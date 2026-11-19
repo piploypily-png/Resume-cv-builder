@@ -453,6 +453,14 @@ html,body{overflow-x:hidden}
 .dock .nav button{width:52px;height:46px;border-radius:15px;font-size:24px;background:#f3f4f8;color:#2f3646}
 .dock .nav .code{background:#f3f4f8;border-radius:10px;padding:9px 12px;font-size:14px;font-weight:600;color:#4a5064;letter-spacing:.3px}
 .dock .nav b{font-size:19px;font-weight:700;color:#1f2430;padding:0 6px}
+/* cute pink + white bullets for experience highlights */
+.paper ul li.ed{position:relative}
+.paper.bdot ul li.ed::before{content:'';position:absolute;left:-12px;top:.52em;width:6px;height:6px;border-radius:50%;background:var(--bc,#f48fb1);-webkit-print-color-adjust:exact;print-color-adjust:exact}
+.paper.bdash ul li.ed::before{content:'-';position:absolute;left:-10px;top:0;color:var(--bc,#f48fb1);font-weight:700;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+.seg{display:flex;gap:6px;margin:4px 0 12px}.seg button{flex:1;border:1px solid #e6e8ef;background:#f6f7fb;border-radius:12px;padding:10px;font:inherit;font-size:14px;color:#6b7184;cursor:pointer}.seg button.on{background:#fff;border-color:#f48fb1;color:#14142b;font-weight:600}
+/* work titles stand out */
+.lx .s-exp .r1>b,.it9 .role>span:first-child{font-size:14px;font-weight:700;letter-spacing:-.1px;color:#14142b;background:linear-gradient(transparent 64%,rgba(244,143,177,.30) 64%);padding:0 2px;margin-left:-2px;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+.lx .s-exp .r1{align-items:baseline}
 </style></head><body class="edit">
 <div class="scroll"><div class="stage" id="stage"><div class="paper" id="paper"></div></div></div>
 
@@ -545,7 +553,7 @@ const set=(p,v)=>{const k=p.split('.'),l=k.pop();const o=k.reduce((a,b)=>a[b],S)
 const E=(p,ph,c='')=>H(p)?'':`<span class="ed ${c}" data-p="${p}" data-ph="${ph}" >${esc(get(p))}</span>`;
 const A=(p,l)=>`<button class="add" data-add="${p}">+ ${l}</button>`;
 const X=p=>`<button class="x" data-del="${p}">×</button>`;
-const bullets=(i,ph)=>`<ul>${(S.exp[i].bullets||[]).map((_,j)=>`<li class="ed" data-p="exp.${i}.bullets.${j}" data-ph="${ph}" >${esc(S.exp[i].bullets[j])}</li>`).join('')}</ul>${A(`exp.${i}.bullets`,'bullet')}`;
+const bullets=(i,ph)=>`<ul>${(S.exp[i].bullets||[]).map((_,j)=>`<li class="ed" data-p="exp.${i}.bullets.${j}" data-ph="${ph}" >${esc(String(S.exp[i].bullets[j]||'').replace(/^\s*[-–•*·▪●]+\s+/,''))}</li>`).join('')}</ul>${A(`exp.${i}.bullets`,'bullet')}`;
 const photo=i=>{const im=S.projects[i].img;return `<div class="ph ${im?'has':''}" data-img="${i}" style="${im?`background-image:url(${im})`:''}"><span class="lbl">+ Upload photo</span></div>`};
 
 function L9(){return `<div class="l9"><div class="hd"><div><h1>${E('name','Your name')}</h1><div class="sub">${E('title','Your title')}</div></div>
@@ -567,7 +575,7 @@ function L10(){return `<div class="l10"><div class="grid"><div class="box"><div 
 function render(){S.hide=S.hide||{};S.titles=S.titles||{};S.links=S.links||[{},{}];if(!VIS.includes(lay))lay=VIS[0];
  const [a,t]=THEMES[theme];applyFont();applyBg();applyPc();document.documentElement.style.setProperty('--a',a);document.documentElement.style.setProperty('--t',t);
  document.body.classList.toggle('edit',edit);
- $('#paper').dataset.l=lay;$('#paper').innerHTML=[null,null,X3,X4,X5,X6,X7,X8,L9,L10,X10,null,X12,X13][lay]();prune();
+ $('#paper').dataset.l=lay;{const p=$('#paper'),st=S.bst||(S.bul===false?'dash':'dot');p.classList.toggle('bdot',st==='dot');p.classList.toggle('bdash',st==='dash');p.style.setProperty('--bc',(S.bcl||'pink')==='gray'?'#b9bdc9':'#f48fb1')}$('#paper').innerHTML=[null,null,X3,X4,X5,X6,X7,X8,L9,L10,X10,null,X12,X13][lay]();prune();
  $('#code').textContent=LAYS[lay][0];$('#lname').textContent=LAYS[lay][1];
  fit();
 }
@@ -763,11 +771,12 @@ function field(path,label,o={}){
  const v=get(path),ph=o.ph||'';
  const inp=o.area?`<textarea data-f="${path}" rows="${o.rows||4}" placeholder="${escA(ph)}">${esc(v)}</textarea>`:`<input data-f="${path}" value="${escA(v)}" placeholder="${escA(ph)}">`;
  return `<div class="fg"><div class="fl"><label>${label}</label>${o.opt?`<button class="rm" data-ea="hide" data-k="${path}">Remove</button>`:''}</div>${inp}</div>`}
+const bulUI=()=>{const st=S.bst||(S.bul===false?'dash':'dot'),cl=S.bcl||'pink';const b=(a,v,t,on)=>`<button type="button" class="${on?'on':''}" data-ea="${a}" data-v="${v}">${t}</button>`;return `<div class="fl"><label>Bullet style</label></div><div class="seg">${b('bst','dot','● Circle',st==='dot')}${b('bst','dash','- Dash',st==='dash')}</div><div class="fl"><label>Bullet color</label></div><div class="seg">${b('bcl','pink','Pink',cl==='pink')}${b('bcl','gray','Gray',cl==='gray')}</div>`};
 const tog=(k,l)=>`<label class="tog"><span>Show ${l} on CV</span><input type="checkbox" data-ea="tog" data-k="${k}" ${H(k)?'':'checked'}></label>`;
 const delb=(k,t='Delete')=>`<button class="rm" data-ea="del" data-k="${k}">${t}</button>`;
 function formHTML(){if(etab==='o')return orderHTML();if(etab==='l')return linksHTML();
  if(etab==='p')return photoField()+pdfTog()+field('name','Full name')+field('title','Headline')+field('email','Email',{opt:1,ph:'you@email.com'})+field('phone','Phone',{opt:1,ph:'+66 80 000 0000'})+field('city','Location',{opt:1,ph:'City, Country'})+field('site','Website or profile',{opt:1,ph:'yoursite.dev'})+field('summary','Summary',{opt:1,area:1,ph:'A short professional summary'});
- if(etab==='x')return tog('exp','Experience')+S.exp.map((e,i)=>`<div class="ic"><div class="ich"><b>Experience ${i+1}</b>${delb('exp.'+i)}</div>${field(`exp.${i}.role`,'Job title')}${field(`exp.${i}.company`,'Company')}<div class="two">${field(`exp.${i}.from`,'From',{ph:'YYYY'})}${field(`exp.${i}.to`,'To',{ph:'Now'})}</div>${field(`exp.${i}.city`,'Location')}<div class="fg"><div class="fl"><label>Highlights</label></div>${(e.bullets||[]).map((b,j)=>`<div class="br"><textarea data-f="exp.${i}.bullets.${j}" rows="2">${esc(b)}</textarea>${delb(`exp.${i}.bullets.${j}`,'×')}</div>`).join('')}<button class="addf" style="margin-top:4px" data-ea="add" data-k="exp.${i}.bullets">+ Add highlight</button></div></div>`).join('')+`<button class="addf" data-ea="add" data-k="exp">+ Add experience</button>`;
+ if(etab==='x')return tog('exp','Experience')+bulUI()+S.exp.map((e,i)=>`<div class="ic"><div class="ich"><b>Experience ${i+1}</b>${delb('exp.'+i)}</div>${field(`exp.${i}.role`,'Job title')}${field(`exp.${i}.company`,'Company')}<div class="two">${field(`exp.${i}.from`,'From',{ph:'YYYY'})}${field(`exp.${i}.to`,'To',{ph:'Now'})}</div>${field(`exp.${i}.city`,'Location')}<div class="fg"><div class="fl"><label>Highlights</label></div>${(e.bullets||[]).map((b,j)=>`<div class="br"><textarea data-f="exp.${i}.bullets.${j}" rows="2">${esc(b)}</textarea>${delb(`exp.${i}.bullets.${j}`,'×')}</div>`).join('')}<button class="addf" style="margin-top:4px" data-ea="add" data-k="exp.${i}.bullets">+ Add highlight</button></div></div>`).join('')+`<button class="addf" data-ea="add" data-k="exp">+ Add experience</button>`;
  if(etab==='e')return tog('edu','Education')+S.edu.map((e,i)=>`<div class="ic"><div class="ich"><b>Education ${i+1}</b>${delb('edu.'+i)}</div>${field(`edu.${i}.degree`,'Degree')}${field(`edu.${i}.school`,'School')}<div class="two">${field(`edu.${i}.year`,'Year',{ph:'YYYY'})}${field(`edu.${i}.note`,'Notes')}</div></div>`).join('')+`<button class="addf" data-ea="add" data-k="edu">+ Add education</button>`;
  if(etab==='s')return tog('skills','Skills')+`<div style="margin-top:16px">${S.skills.map((s,i)=>s?`<span class="sk">${esc(s)}<button data-ea="del" data-k="skills.${i}">×</button></span>`:'').join('')}</div><div class="addrow"><input id="skIn" placeholder="Add skills, separated by commas"><button class="btn" data-ea="skadd">Add</button></div>`;
  return tog('projects','Projects')+S.projects.map((p,i)=>`<div class="ic"><div class="ich"><b>Project ${i+1}</b>${delb('projects.'+i)}</div>${field(`projects.${i}.name`,'Project name')}${field(`projects.${i}.link`,'Link',{ph:'yoursite.dev/project'})}${field(`projects.${i}.desc`,'Description',{area:1,rows:3})}<div class="fg"><div class="fl"><label>Photo</label>${p.img?`<button class="rm" data-ea="photo-rm" data-k="${i}">Remove</button>`:''}</div><div class="pimg" data-ea="photo" data-k="${i}" style="${p.img?`background-image:url(${p.img})`:''}">${p.img?'':'+ Upload photo'}</div></div></div>`).join('')+`<button class="addf" data-ea="add" data-k="projects">+ Add project</button>`}
@@ -784,6 +793,7 @@ function prune(){
 let _pr;const rp=()=>{cancelAnimationFrame(_pr);_pr=requestAnimationFrame(render)};
 const mEd=$('#mEd');
 mEd.addEventListener('input',e=>{const p=e.target.dataset.f;if(p){set(p,e.target.value);save();rp()}});
+mEd.addEventListener('click',e=>{const b=e.target.closest('[data-ea="bst"],[data-ea="bcl"]');if(!b)return;if(b.dataset.ea==='bst')S.bst=b.dataset.v;else S.bcl=b.dataset.v;save();render();renderForm()});
 mEd.addEventListener('change',e=>{const t=e.target;if(t.dataset&&t.dataset.ea==='tog'){S.hide[t.dataset.k]=!t.checked;save();render()}});
 mEd.addEventListener('keydown',e=>{if(e.key==='Enter'&&e.target.id==='skIn'){e.preventDefault();const b=mEd.querySelector('[data-ea=skadd]');if(b)b.click()}});
 mEd.addEventListener('click',e=>{
