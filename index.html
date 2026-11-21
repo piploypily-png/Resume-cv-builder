@@ -490,6 +490,11 @@ body.ready #stage{transition:margin-top .28s ease,width .28s ease,height .28s ea
 @media print{*{transition:none!important;animation:none!important}}
 /* PDF export = exactly the screen design */
 @media print{
+ html:has(body.pdf-design),body.pdf-design{width:794px!important;min-width:794px!important}
+ body.pdf-design .scroll,body.pdf-design .stage{width:794px!important;max-width:none!important}
+ body.pdf-design .paper{width:794px!important;max-width:none!important;margin:0!important}
+}
+@media print{
  body.pdf-design,html:has(body.pdf-design){background:var(--pc,#fff)!important}
  body.pdf-design #bMore,body.pdf-design .zoomchip,body.pdf-design .add,body.pdf-design .x{display:none!important}
  body.pdf-design .it,body.pdf-design .it9,body.pdf-design .it10,body.pdf-design .edrow,body.pdf-design .card,body.pdf-design .pg>div{break-inside:avoid;page-break-inside:avoid}
@@ -587,7 +592,7 @@ body.edit #bEdit .ico{background:var(--t);color:var(--a)}
 <div class="modal" id="mEd"><div class="sheet edsheet"><div class="edh"><h3>Edit content</h3><button class="xb" data-close aria-label="Close">×</button></div><div class="etabs" id="etabs"></div><div class="edb" id="edb"></div></div></div>
 <div class="modal" id="mEx"><div class="sheet"><h3>Export PDF</h3>
 <button class="btn" id="exD">Designed PDF<br><small style="font-weight:400;opacity:.85">Looks exactly like your CV, with colors</small></button>
-<button class="btn g" id="exA">ATS-friendly PDF<br><small style="font-weight:400;opacity:.7">Plain single column for job portals</small></button>
+<button class="btn g" id="exA">ATS-friendly PDF<br><small style="font-weight:400;opacity:.7">Plain text-style version, not the design. For job portals only</small></button>
 <button class="btn g" data-close>Cancel</button></div></div>
 <div class="modal" id="mLib"><div class="sheet"><div class="edh"><h3>Library</h3><button class="xb" data-close aria-label="Close">×</button></div>
 <div class="lib-n" id="libCur"></div>
@@ -1044,7 +1049,7 @@ async function exportDesigned(){
  const st=document.createElement('style');st.textContent='@page{size:A4;margin:0}';document.head.appendChild(st);document.title=fn;
  addEventListener('afterprint',()=>{document.title=old;document.body.classList.remove('pdf-design');st.remove();render()},{once:true});
  setTimeout(()=>print(),200)}
-$('#bPdf').onclick=()=>$('#mEx').classList.add('show');
+$('#bPdf').onclick=exportDesigned;
 $('#exD').onclick=()=>{$('#mEx').classList.remove('show');setTimeout(exportDesigned,250)};
 $('#exA').onclick=()=>{$('#mEx').classList.remove('show');setTimeout(exportPDF,250)};
 const ini=()=>(S.name||'').split(/\s+/).filter(Boolean).slice(0,2).map(w=>w[0].toUpperCase()).join('')||'CV';
