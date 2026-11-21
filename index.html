@@ -3,6 +3,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>CV Builder</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,300;0,400;0,600;1,300&display=swap" rel="stylesheet">
 <style>
 :root{--a:#4a3fd0;--t:#ecebff;--ink:#14142b;--f:'Geist','Noto Sans Thai',system-ui,sans-serif;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px)}
 *{box-sizing:border-box}
@@ -444,7 +445,7 @@ html body[data-tone] .dock .bar button:active{background:var(--t);color:var(--a)
 .bar2 .ib:active .ico{transform:scale(.9)}
 .stage{transition:margin-top .2s}
 /* white, very slightly transparent, smaller action panel */
-.bar2{background:rgba(255,255,255,.93);border:1px solid rgba(232,235,241,.8);box-shadow:0 6px 20px rgba(31,36,48,.06);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);padding:9px 6px;border-radius:28px;max-width:350px}
+.bar2{background:rgba(255,255,255,.93);border:1px solid rgba(232,235,241,.8);box-shadow:0 6px 20px rgba(31,36,48,.06);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);padding:9px 6px;border-radius:28px;max-width:390px}
 .bar2 .ib{gap:4px;font-size:11.5px}
 .bar2 .ib svg{width:21px;height:21px}
 /* layout switcher pill above the toolbar */
@@ -524,9 +525,9 @@ button,.chip,.chip2,.ib,.oi,.fo,.mrow,.cvr .tx{touch-action:manipulation}
 .l3 .tt{font-family:inherit;font-style:normal;font-weight:600;font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--a);margin-top:6px}
 .l3 .ct{justify-content:flex-start;gap:6px 14px;margin-top:10px}
 .l3 .ct i{display:none}
-.l3 .sx{grid-template-columns:96px 1fr;border-bottom:1px dotted #d6d9e4;padding:16px 4px}
+.l3 .sx{grid-template-columns:116px 1fr;column-gap:10px;border-bottom:1px dotted #d6d9e4;padding:16px 4px}
 .l3 .sx:last-child{border-bottom:0}
-.l3 h4{font-family:inherit;font-weight:700;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--a)}
+.l3 h4{font-family:inherit;font-weight:700;font-size:10px;letter-spacing:.1em;white-space:nowrap;text-transform:uppercase;color:var(--a)}
 .l3 h4::before{content:'';display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--a);margin-right:7px;vertical-align:middle}
 .l3 .dt{background:var(--t);color:var(--a);padding:2px 9px;border-radius:999px;font-weight:600;font-size:10px}
 .l3 .chip{border-radius:999px}
@@ -543,10 +544,10 @@ button,.chip,.chip2,.ib,.oi,.fo,.mrow,.cvr .tx{touch-action:manipulation}
 .l7 .mn h4{display:flex;align-items:center;gap:8px;color:var(--ink);font-size:13px;font-weight:700}
 .l7 .mn h4::after{content:'';flex:1;height:2px;background:var(--t)}
 /* redesigned action area: layout switcher + toolbar */
-.dock .nav{gap:8px;padding:6px;border-radius:999px;background:rgba(255,255,255,.95);border:1px solid #eceef4;box-shadow:0 10px 28px rgba(31,36,48,.08)}
-.dock .nav button{width:46px;height:46px;border-radius:50%;background:#fff;border:1px solid #e6e8ef;color:#5b6275;font-size:22px;line-height:1;box-shadow:0 2px 6px rgba(31,36,48,.05)}
-.dock .nav .code{background:var(--t);color:var(--a);border-radius:999px;padding:6px 11px;font-size:12px;font-weight:700;letter-spacing:.06em}
-.dock .nav b{font-size:18px;font-weight:700;color:#1f2430;padding:0 4px}
+.dock .nav{gap:6px;padding:5px;border-radius:999px;background:rgba(255,255,255,.95);border:1px solid #eceef4;box-shadow:0 10px 28px rgba(31,36,48,.08)}
+.dock .nav button{width:40px;height:40px;border-radius:50%;background:#fff;border:1px solid #e6e8ef;color:#5b6275;font-size:19px;line-height:1;box-shadow:0 2px 6px rgba(31,36,48,.05)}
+.dock .nav .code{background:var(--t);color:var(--a);border-radius:999px;padding:5px 10px;font-size:11px;font-weight:700;letter-spacing:.06em}
+.dock .nav b{font-size:16px;font-weight:700;color:#1f2430;padding:0 3px}
 .bar2{border-radius:30px;padding:8px 6px;box-shadow:0 10px 28px rgba(31,36,48,.08)}
 .bar2 .ib .ico{display:grid;place-items:center;width:42px;height:30px;border-radius:12px;transition:background .25s ease,color .25s ease,transform .15s ease}
 .bar2 .ib:active .ico{background:var(--t);color:var(--a)}
@@ -561,10 +562,129 @@ body.edit #bEdit .ico{background:var(--t);color:var(--a)}
 .paper.sm-accent [data-p="summary"]{color:var(--a);font-weight:500}
 .paper.sm-quote :has(>[data-p="summary"]){padding-left:22px;position:relative;font-style:italic}
 .paper.sm-quote :has(>[data-p="summary"])::before{content:'\201C';position:absolute;left:0;top:-6px;font-size:30px;line-height:1;color:var(--a);font-family:Georgia,serif;font-style:normal}
+/* on-screen page breaks (A4 pages) */
+.pgbrk{position:absolute;left:0;right:0;height:0;border-top:2px dashed #f48fb1;z-index:6;pointer-events:none}
+.pgbrk span{position:absolute;right:10px;top:-11px;background:#f48fb1;color:#fff;font:700 10px/1 system-ui,sans-serif;letter-spacing:.04em;padding:4px 9px;border-radius:999px}
+.pgbrk::before{content:'';position:absolute;left:0;right:0;top:0;height:10px;background:linear-gradient(rgba(31,36,48,.07),transparent)}
+@media print{.pgbrk{display:none!important}}
+/* preview-only mode */
+#bFocus{right:62px}
+.dock,#bMore,#bFocus{transition:opacity .4s ease,right .35s ease}
+body.focus .dock,body.focus #bMore{opacity:0;pointer-events:none}
+body.focus #bFocus{right:12px;opacity:.5}
+#bFocus .slash{display:none}body.focus #bFocus .slash{display:block}
+body.focus .pgbrk{display:none}
+/* bullets stay inside their own line box (no overlap) */
+.paper ul{list-style:none;padding-left:0!important;margin-left:0}
+.paper ul li.ed{position:relative;display:block;padding-left:15px;margin:0 0 3px;min-width:0;overflow-wrap:anywhere;word-break:break-word;break-inside:avoid}
+.paper.bdot ul li.ed::before{left:1px;top:.5em}
+.paper.bdash ul li.ed::before{left:1px;top:0}
+#bFocus{display:none}
+body.focus #bFocus{display:flex;right:12px;opacity:.5}
+/* L12 Blossom Duo */
+.lx.l14{font-family:'Josefin Sans','Noto Sans Thai',sans-serif;font-weight:300;font-size:10px;letter-spacing:.045em;line-height:1.6;color:#4d4b4e}
+.l14 *{font-family:inherit}
+.l14 .hd14{display:flex;justify-content:space-between;align-items:flex-start;gap:20px;margin-bottom:22px}
+.l14 h1{font-size:27px;font-weight:300;letter-spacing:.13em;text-transform:uppercase;color:var(--a);line-height:1.15;margin:8px 0 14px}
+.l14 .tt{font-size:12.5px;font-weight:400;letter-spacing:.08em;color:#46444a;line-height:1.7;max-width:400px;margin:0 0 16px}
+.l14 .ct{font-size:8.6px;letter-spacing:.09em;color:#55535a;line-height:1.7}
+.l14 .ct.col{display:flex;flex-direction:column}
+.l14 .pf,.l14 .pf.rect{width:112px;height:140px;border-radius:0;margin:0;flex:none}
+.l14 .pf.empty{background:var(--t)}
+body:not(.edit) .l14 .pf.empty,body.pdf-design .l14 .pf.empty{display:none}
+.l14 h4{font-size:11.5px;font-weight:400;letter-spacing:.03em;text-transform:none;color:var(--a);margin:0 0 10px}
+.l14 .sx{display:block;margin:0 0 18px;border:0;padding:0}
+.l14 .s-sum .sm{text-align:justify;font-size:8.8px;line-height:1.85;color:#55535a;letter-spacing:.05em}
+.l14 .cols14{display:grid;grid-template-columns:35% 1fr}
+.l14 .c1{padding-right:18px}
+.l14 .c2{padding-left:20px;border-left:1px dashed #e2d3de}
+.l14 .it{margin-bottom:18px}
+.l14 .it .r1{display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+.l14 .it .r1 b{font-weight:300;font-size:13px;letter-spacing:.04em;color:#46444a}
+.l14 .r2{display:flex;justify-content:space-between;font-size:8.2px;color:#7a7880;margin:3px 0 8px;gap:10px}
+.l14 .dt{font-size:8.2px;color:#7a7880;white-space:nowrap;background:none;padding:0}
+.l14 ul{margin:0}
+.l14 ul li.ed{font-size:8.6px;line-height:1.8;text-align:justify;color:#55535a}
+.l14 .s-edu .it,.l14 .s-langs .it{margin-bottom:8px}
+.l14 .s-edu .r1 b,.l14 .s-langs .r1 b{font-size:9.6px;color:#55535a}
+.l14 .chip{display:block;background:none;border:0;border-radius:0;padding:0 0 3px 12px;color:#55535a;font-size:8.8px;position:relative}
+.l14 .chip::before{content:'';position:absolute;left:1px;top:.62em;width:3px;height:3px;border-radius:50%;background:#7a7880}
+.l14 .s-links .r1 b,.l14 .s-links a{font-size:7.8px;text-transform:uppercase;letter-spacing:.1em;color:#7a7880}
+/* L13 Orchid Duo (exact reference) */
+.lx.l15{font-family:'Josefin Sans','Noto Sans Thai',sans-serif;font-weight:300;font-size:10px;letter-spacing:.045em;line-height:1.6;color:#4d4b4e}
+.l15 *{font-family:inherit}
+.l15 .hd15{display:flex;justify-content:space-between;align-items:flex-start;gap:20px;margin-bottom:22px}
+.l15 h1{font-size:27px;font-weight:300;letter-spacing:.13em;text-transform:uppercase;color:var(--a);line-height:1.15;margin:8px 0 14px}
+.l15 .tt{font-size:12.5px;font-weight:400;letter-spacing:.08em;color:#46444a;line-height:1.7;max-width:400px;margin:0 0 16px}
+.l15 .ct{font-size:8.6px;letter-spacing:.09em;color:#55535a;line-height:1.7}
+.l15 .ct.col{display:flex;flex-direction:column}
+.l15 .pf,.l15 .pf.rect{width:112px;height:140px;border-radius:0;margin:0;flex:none}
+.l15 .pf.empty{background:var(--t)}
+body:not(.edit) .l15 .pf.empty,body.pdf-design .l15 .pf.empty{display:none}
+.l15 h4{font-size:11.5px;font-weight:400;letter-spacing:.03em;text-transform:none;color:var(--a);margin:0 0 10px}
+.l15 .sx{display:block;margin:0 0 18px;border:0;padding:0}
+.l15 .s-sum .sm{text-align:justify;font-size:8.8px;line-height:1.85;color:#55535a;letter-spacing:.05em}
+.l15 .cols15{display:grid;grid-template-columns:35% 1fr}
+.l15 .c1{padding-right:18px}
+.l15 .c2{padding-left:20px;border-left:1px dashed #e2d3de}
+.l15 .it{margin-bottom:18px}
+.l15 .it .r1{display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+.l15 .it .r1 b{font-weight:300;font-size:13px;letter-spacing:.04em;color:#46444a}
+.l15 .r2{display:flex;justify-content:space-between;font-size:8.2px;color:#7a7880;margin:3px 0 8px;gap:10px}
+.l15 .dt{font-size:8.2px;color:#7a7880;white-space:nowrap;background:none;padding:0}
+.l15 ul{margin:0}
+.l15 ul li.ed{font-size:8.6px;line-height:1.8;text-align:justify;color:#55535a}
+.l15 .s-edu .it,.l15 .s-langs .it{margin-bottom:8px}
+.l15 .s-edu .r1 b,.l15 .s-langs .r1 b{font-size:9.6px;color:#55535a}
+.l15 .chip{display:block;background:none;border:0;border-radius:0;padding:0 0 3px 12px;color:#55535a;font-size:8.8px;position:relative}
+.l15 .chip::before{content:'';position:absolute;left:1px;top:.62em;width:3px;height:3px;border-radius:50%;background:#7a7880}
+.l15 .s-links .r1 b,.l15 .s-links a{font-size:7.8px;text-transform:uppercase;letter-spacing:.1em;color:#7a7880}
+
+.paper[data-l="15"]{padding:84px 66px 72px}
+.l15 h1{font-size:29px;letter-spacing:.14em;margin:6px 0 14px}
+.l15 .tt{font-size:13.5px;letter-spacing:.08em;line-height:1.75;max-width:430px;margin:0 0 18px}
+.l15 .ct{font-size:9px;letter-spacing:.1em;line-height:1.75}
+.l15 .pf,.l15 .pf.rect{width:117px;height:150px}
+.l15 .hd15{margin-bottom:26px}
+.l15 h4{font-size:13.5px;letter-spacing:.03em;margin:0 0 12px}
+.l15 .s-sum .sm{font-size:9.4px;line-height:2.05;letter-spacing:.05em}
+.l15 .s-sum{margin-bottom:26px}
+.l15 .cols15{grid-template-columns:38.7% 1fr}
+.l15 .c1{padding-right:22px}
+.l15 .c2{padding-left:26px;border-left:1px dashed #d9d4d0}
+.l15 .sx{margin:0 0 28px}
+.l15 .s-exp .it{display:grid;grid-template-columns:1fr auto;column-gap:10px;margin-bottom:26px}
+.l15 .s-exp .it .r1{display:contents}
+.l15 .s-exp .it .r1>b{grid-column:1/-1;grid-row:1;font-size:13.5px;letter-spacing:.03em;margin-bottom:6px}
+.l15 .s-exp .it .r2{grid-column:1;grid-row:2;justify-content:flex-start;gap:8px;margin:0 0 12px;font-size:8.2px}
+.l15 .s-exp .it .r1>.dt{grid-column:2;grid-row:2;align-self:start;margin-top:3px}
+.l15 .s-exp .it ul{grid-column:1/-1;grid-row:3}
+.l15 ul li.ed{font-size:8.6px;line-height:1.85;padding-left:12px;margin:0 0 3px}
+.l15 .ed15 .sc{font-size:13px;letter-spacing:.03em;color:#46444a;margin-bottom:2px}
+.l15 .ed15 .dg{font-size:10px;color:#55535a}
+.l15 .ed15 .yr{font-size:8.4px;color:#7a7880;margin:8px 0 14px}
+.l15 .ed15 ul{margin:0}
+.l15 .ed15 ul li{position:relative;padding-left:12px;font-size:7.6px;line-height:1.85;text-align:justify;color:#6a6870;margin-bottom:4px}
+.l15 .ed15 ul li::before{content:'';position:absolute;left:2px;top:.7em;width:3px;height:3px;border-radius:50%;background:#7a7880}
+.l15 .s-langs .lg15{display:flex;gap:18px;font-size:8.6px;color:#55535a;margin-bottom:6px}
+.l15 .s-langs .lg15 .ln{min-width:44px}
+.l15 .s-langs .lg15 .lv{color:#6a6870}
+.l15 .s-skills .chip{font-size:8.6px;line-height:1.85;padding-left:12px;margin-bottom:6px;color:#55535a}
+.l15 .rf{margin-bottom:20px}
+.l15 .rf .rn{font-size:8.6px;color:#46444a}
+.l15 .rf .ri{font-size:8.2px;font-style:italic;color:#6a6870;margin:2px 0}
+.l15 .rf .rc,.l15 .rf .ra,.l15 .rf .rm2{font-size:8.2px;color:#55535a;line-height:1.7}
+.l15 .lk15{display:flex;justify-content:flex-end;flex-wrap:wrap;gap:6px 20px;margin-top:46px}
+.l15 .lk{text-align:right}
+.l15 .lk .ll{font-size:7.4px;letter-spacing:.1em;text-transform:uppercase;color:#6a6870}
+.l15 .lk .ch{font-size:9px;color:var(--a);margin-left:4px}
+.l15 .lk .lu{font-size:6.8px;letter-spacing:.04em;color:#9a98a0;margin-top:2px}
+.l15 .ld{display:none}
 </style></head><body class="edit">
 <div class="scroll"><div class="stage" id="stage"><div class="paper" id="paper"></div></div></div>
 
 <button id="bMore" class="zoomchip more" aria-label="More">⋯</button>
+<button id="bFocus" class="zoomchip more" aria-label="Show only the CV"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/><path class="slash" d="M3 3l18 18"/></svg></button>
 <div class="modal" id="mMore"><div class="sheet"><h3>More</h3>
 <button class="mrow" id="mLibOpen"><i>▤</i>Library<small>›</small></button>
 <button class="mrow" id="mExp"><i>↓</i>Export PDF<small>›</small></button>
@@ -578,6 +698,7 @@ body.edit #bEdit .ico{background:var(--t);color:var(--a)}
   <button id="bLay" class="ib c3"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="3"/><path d="M3 10h18M10 10v10"/></svg></span>Layout</button>
   <button id="bTheme" class="ib c4"><span class="ico"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3a9 9 0 100 18c1.4 0 2-1 1.5-2-.6-1.2.2-2.5 1.6-2.5H17a4 4 0 004-4c0-5-4-9.5-9-9.5z"/><circle cx="7.5" cy="12" r="1.1"/><circle cx="9.5" cy="7.6" r="1.1"/><circle cx="14.5" cy="7.6" r="1.1"/></svg></span>Theme</button>
   <button id="bZ2" class="ib c5"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg></span><span id="zl2">100%</span></button>
+  <button id="bHide" class="ib c5"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg></span>Hide</button>
   <button id="bPdf" class="ib c6"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11M7 11l5 5 5-5M5 20h14"/></svg></span>PDF</button>
  </div>
 </div>
@@ -607,13 +728,13 @@ body.edit #bEdit .ico{background:var(--t);color:var(--a)}
 const $=s=>document.querySelector(s);
 const mkExp=()=>({role:'',company:'',from:'',to:'',city:'',bullets:['','','']});
 const D0=()=>({name:'Juthamas Suksod',title:'Creative & Content Specialist',summary:'',email:'',phone:'',city:'',site:'',
- skills:['','','','','',''],exp:[mkExp(),mkExp()],edu:[{}],projects:[{},{}],links:[{},{}],langs:[{},{}],hide:{}});
+ skills:['','','','','',''],exp:[mkExp(),mkExp()],edu:[{}],projects:[{},{}],links:[{},{}],langs:[{},{}],refs:[],hide:{}});
 let S=D0(),lay=0,edit=true,zoom=1,theme=0,fi=0,bg='#ffffff',pc='#ffffff',imgIdx=null;
 try{const s=JSON.parse(localStorage.getItem('resume-v1')||'null');if(s){S=s.S||S;lay=s.lay||0;fi=s.fi||0;if(s.v===2){theme=s.theme||0;bg=s.bg||bg;pc=s.pc||pc}}}catch(e){}
 let _t;const flush=()=>{try{localStorage.setItem('resume-v1',JSON.stringify({v:2,S,lay,theme,fi,bg,pc}))}catch(e){}};
 const save=()=>{clearTimeout(_t);_t=setTimeout(flush,500)};addEventListener('pagehide',flush);
-const THEMES=[['#6b86f5','#eaf0ff'],['#f29a79','#fff1ea'],['#52b99a','#e6f6ef'],['#9a8bf5','#f0ecff'],['#ef82a8','#ffedf3'],['#4a5266','#eef0f5']];
-const VIS=[2,3,4,5,6,7,8,9,10,12,13];const LAYS=[['','removed'],['','removed'],['L01','Soft Ledger'],['L02','Tight Brief'],['L03','Grid Atlas'],['L04','Paper Column'],['L05','Side Studio'],['L06','Type Notes'],['L07','Showcase'],['L08','Offset'],['L09','Gentle Banner'],['',''],['L10','Initial'],['L11','Edge Rail']];
+const THEMES=[['#6b86f5','#eaf0ff'],['#f29a79','#fff1ea'],['#52b99a','#e6f6ef'],['#9a8bf5','#f0ecff'],['#ef82a8','#ffedf3'],['#4a5266','#eef0f5'],['#e39ad0','#fbeaf6'],['#e8a58f','#fdeee8'],['#8fbf9f','#eaf5ee'],['#9aa6e8','#eef0fd'],['#d98fa6','#fbebf0']];
+const VIS=[2,3,4,5,6,7,8,9,10,12,13,15];const LAYS=[['','removed'],['','removed'],['L01','Soft Ledger'],['L02','Tight Brief'],['L03','Grid Atlas'],['L04','Paper Column'],['L05','Side Studio'],['L06','Type Notes'],['L07','Showcase'],['L08','Offset'],['L09','Gentle Banner'],['',''],['L10','Initial'],['L11','Edge Rail'],['','removed'],['L12','Orchid Duo']];
 const BGS=[['White','#ffffff'],['Mist','#f3f6ff'],['Blush','#fdf2f5'],['Mint','#f0f9f5'],['Lilac','#f5f2ff'],['Peach','#fff4ee'],['Butter','#fffaeb'],['Cloud','#f4f5f8'],['Sky','#e9f2ff'],['Rose','#fbe3ea'],['Sage','#e6f2ea'],['Slate','#e8ebf1']];
 function applyBg(){if(!/^#[0-9a-f]{6}$/i.test(bg))bg=BGS[0][1];document.documentElement.style.setProperty('--bg',bg);const n=parseInt(bg.slice(1),16),L=(.299*(n>>16)+.587*(n>>8&255)+.114*(n&255))/255;document.body.dataset.tone=L>.62?'light':'dark'}
 function renderBg(){$('#bgs').innerHTML=BGS.map(([n,c])=>`<i data-bg="${c}" title="${n}" class="${c===bg?'on':''}" style="background:${c}"></i>`).join('');$('#bgn').textContent=(BGS.find(x=>x[1]===bg)||['Custom'])[0];$('#bgc').value=bg}
@@ -674,15 +795,15 @@ function L10(){return `<div class="l10"><div class="grid"><div class="box"><div 
 ${H('langs')?'':`<div class="box" style="margin-top:10px"><div class="h" data-k="langs"><span class="n" style="display:inline">— </span>${TL('langs')}</div><div class="pg">${S.langs.map((l,i)=>`<div class="sm"><div style="font-weight:700">${E(`langs.${i}.name`,'e.g. English')}${X('langs.'+i)}</div><div class="muted">${lvl(l.level)}</div></div>`).join('')}</div>${A('langs','Add language')}</div>`}
 <div class="box" style="margin-top:10px"><div class="h" data-k="projects"><span class="n" style="display:inline">06 — </span>${TL('projects')}</div><div class="pg">${S.projects.map((p,i)=>`<div class="sm"><div style="font-weight:700">${E(`projects.${i}.name`,'Client or venture')}${X('projects.'+i)}</div><div class="muted">${E(`projects.${i}.desc`,'Scope and outcome')}</div><div style="color:var(--a)">${E(`projects.${i}.link`,'link')}</div></div>`).join('')}</div>${A('projects','Add project')}</div>${H('links')?'':`<div class="box" style="margin-top:10px"><div class="h" data-k="links"><span class="n" style="display:inline">07 — </span>${TL('links')}</div><div class="pg">${S.links.map((l,i)=>`<div class="sm"><div style="font-weight:700">${E(`links.${i}.label`,'Portfolio')}${X('links.'+i)}</div><div style="color:var(--a)">${E(`links.${i}.url`,'yoursite.com/portfolio')}</div></div>`).join('')}</div>${A('links','Add link')}</div>`}</div>`}
 
-function render(){S.hide=S.hide||{};S.titles=S.titles||{};S.links=S.links||[{},{}];S.langs=S.langs||[{},{}];if(!VIS.includes(lay))lay=VIS[0];
+function render(){if(lay===14)lay=15;if(lay===15&&window._ll!==15&&theme===0&&pc==='#ffffff'){theme=6;pc='#fffcf5'}S.hide=S.hide||{};S.titles=S.titles||{};S.links=S.links||[{},{}];S.langs=S.langs||[{},{}];S.refs=S.refs||[];if(!VIS.includes(lay))lay=VIS[0];
  const [a,t]=THEMES[theme];applyFont();applyBg();applyPc();document.documentElement.style.setProperty('--a',a);document.documentElement.style.setProperty('--t',t);
  document.body.classList.toggle('edit',edit);
- $('#paper').dataset.l=lay;if(window._ll!==lay){window._ll=lay;const pp=$('#paper');pp.classList.remove('swap');void pp.offsetWidth;pp.classList.add('swap')}{const p=$('#paper'),st=S.bst||(S.bul===false?'dash':'dot');p.classList.toggle('bdot',st==='dot');p.classList.toggle('bdash',st==='dash');{const sm=S.sumst||'plain';['plain','box','bar','hl','accent','quote','out'].forEach(k=>p.classList.toggle('sm-'+k,k===sm))}{const ts=S.tst||(S.thl===false?'plain':'stripe');['stripe','underline','pill','bar','color','plain'].forEach(k=>p.classList.toggle('ts-'+k,k===ts))}p.style.setProperty('--bc',(S.bcl||'pink')==='gray'?'#b9bdc9':'#f48fb1')}$('#paper').innerHTML=[null,null,X3,X4,X5,X6,X7,X8,L9,L10,X10,null,X12,X13][lay]();prune();
+ $('#paper').dataset.l=lay;if(window._ll!==lay){window._ll=lay;const pp=$('#paper');pp.classList.remove('swap');void pp.offsetWidth;pp.classList.add('swap')}{const p=$('#paper'),st=S.bst||(S.bul===false?'dash':'dot');p.classList.toggle('bdot',st==='dot');p.classList.toggle('bdash',st==='dash');{const sm=S.sumst||'plain';['plain','box','bar','hl','accent','quote','out'].forEach(k=>p.classList.toggle('sm-'+k,k===sm))}{const ts=S.tst||(S.thl===false?'plain':'stripe');['stripe','underline','pill','bar','color','plain'].forEach(k=>p.classList.toggle('ts-'+k,k===ts))}p.style.setProperty('--bc',(S.bcl||'pink')==='gray'?'#b9bdc9':'#f48fb1')}$('#paper').innerHTML=[null,null,X3,X4,X5,X6,X7,X8,L9,L10,X10,null,X12,X13,X14,X15][lay]();prune();
  $('#code').textContent=LAYS[lay][0];$('#lname').textContent=LAYS[lay][1];
  fit();
 }
 const vw=()=>Math.min(innerWidth,document.documentElement.clientWidth||innerWidth,(window.visualViewport&&visualViewport.width)||innerWidth);
-function fit(){const sc=Math.min((vw()-56)/794,.85)*zoom;const p=$('#paper'),s=$('#stage');p.style.transform=`scale(${sc})`;s.style.width=794*sc+'px';document.documentElement.style.setProperty('--pw',794*sc+'px');p.style.paddingBottom='';p.style.minHeight='1123px';const h=p.offsetHeight*sc;s.style.height=h+'px';const dk=document.querySelector('.dock'),dh=dk?dk.offsetHeight:0,top=Math.max(14,Math.round((innerHeight-dh-h)/2));s.style.marginTop=top+'px'}
+function fit(){const sc=Math.min((vw()-56)/794,.85)*zoom;const p=$('#paper'),s=$('#stage');p.style.transform=`scale(${sc})`;s.style.width=794*sc+'px';document.documentElement.style.setProperty('--pw',794*sc+'px');p.style.paddingBottom='';p.style.minHeight='1123px';const h=p.offsetHeight*sc;s.style.height=h+'px';const dk=document.querySelector('.dock'),dh=(dk&&!document.body.classList.contains('focus'))?dk.offsetHeight:0,top=Math.max(14,Math.round((innerHeight-dh-h)/2));s.style.marginTop=top+'px'}
 let _r;addEventListener('resize',()=>{cancelAnimationFrame(_r);_r=requestAnimationFrame(fit)});if(window.visualViewport)visualViewport.addEventListener('resize',()=>{cancelAnimationFrame(_r);_r=requestAnimationFrame(fit)});
 new ResizeObserver(()=>{cancelAnimationFrame(_r);_r=requestAnimationFrame(fit)}).observe($('#paper'));
 
@@ -893,6 +1014,7 @@ function atsHTML(){
  if(ed.length)o+='<h2>Education</h2>'+ed.map(e=>`<div class="r"><p><b>${h([v(e.degree),v(e.school)].filter(Boolean).join(', '))}</b></p>${v(e.year)||v(e.note)?`<p>${h([v(e.year),v(e.note)].filter(Boolean).join(' | '))}</p>`:''}</div>`).join('');
  const sk=H('skills')?[]:S.skills.filter(v);if(sk.length)o+=`<h2>Skills</h2><p>${sk.map(h).join(', ')}</p>`;
   const lg=H('langs')?[]:(S.langs||[]).filter(l=>v(l.name));if(lg.length)o+=`<h2>Languages</h2><p>${lg.map(l=>h(v(l.name))+(lvlTxt(l.level)?' ('+h(lvlTxt(l.level))+')':'')).join(', ')}</p>`;
+  const rf=H('refs')?[]:(S.refs||[]).filter(r=>v(r.name));if(rf.length)o+='<h2>References</h2>'+rf.map(r=>'<p>'+[r.name,r.role,r.company,r.addr,r.email].filter(Boolean).map(x=>h(v(x))).join(' · ')+'</p>').join('');
  const pr=H('projects')?[]:S.projects.filter(p=>v(p.name)||v(p.desc));
  if(pr.length)o+='<h2>Projects</h2>'+pr.map(p=>`<div class="r"><p><b>${h(v(p.name))}</b>${v(p.link)?' – '+h(v(p.link)):''}</p>${v(p.desc)?`<p>${h(v(p.desc))}</p>`:''}${p.img&&!H('pdfphotos')?`<img class="pj" src="${p.img}" alt="">`:''}</div>`).join('');
  const lk=H('links')?[]:S.links.filter(l=>v(l.url)||v(l.label));
@@ -901,13 +1023,14 @@ function atsHTML(){
 async function exportPDF(){
  loadFont(0);const body=atsHTML(),old=document.title,fn=(S.name||'CV').replace(/\s+/g,'_')+'_CV';
  try{if(typeof claude!=='undefined'){const d=await claude.use('downloads');if(d){
-  const doc=`<!doctype html><html><head><meta charset="utf-8"><title>${esc(fn)}</title><link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@400;700&display=swap" rel="stylesheet"><style>${ATS_CSS}@page{size:A4;margin:14mm}</style></head><body><div id="ats">${body}</div><script>setTimeout(()=>print(),600)<\/script></body></html>`;
+  const doc=`<!doctype html><html><head><meta charset="utf-8"><title>${esc(fn)}</title><link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;600&display=swap" rel="stylesheet"><style>${ATS_CSS}@page{size:A4;margin:14mm}</style></head><body><div id="ats">${body}</div><script>setTimeout(()=>print(),600)<\/script></body></html>`;
   await d.save({filename:fn+'.html',data:doc});return}}}catch(e){}
  $('#ats').innerHTML=body;document.title=fn;document.body.classList.add('pdf-ats');
  addEventListener('afterprint',()=>{document.title=old;$('#ats').innerHTML='';document.body.classList.remove('pdf-ats')},{once:true});
  setTimeout(()=>print(),150)}
 const H=k=>!!(S.hide&&S.hide[k]);
-const etabs=[['p','Profile'],['x','Experience'],['e','Education'],['s','Skills'],['g','Languages'],['j','Projects'],['l','Links'],['o','Order']];let etab='p';
+const etabs=[['p','Profile'],['x','Experience'],['e','Education'],['s','Skills'],['g','Languages'],['r','References'],['j','Projects'],['l','Links'],['o','Order']];let etab='p';
 const escA=s=>esc(s).replace(/"/g,'&quot;');
 function field(path,label,o={}){
  if(o.opt&&H(path))return `<button class="addf" data-ea="show" data-k="${path}">+ Add ${label}</button>`;
@@ -918,7 +1041,7 @@ const sumUI=()=>{const cur=S.sumst||'plain';const b=(v,t)=>`<button type="button
 const bulUI=()=>{const st=S.bst||(S.bul===false?'dash':'dot'),cl=S.bcl||'pink',ts=S.tst||(S.thl===false?'plain':'stripe');const b=(a,v,t,on)=>`<button type="button" class="${on?'on':''}" data-ea="${a}" data-v="${v}">${t}</button>`;return `<div class="fl"><label>Job title style</label></div><div class="seg seg3">${[['stripe','Highlight'],['underline','Underline'],['pill','Pill'],['bar','Side bar'],['color','Accent'],['plain','Plain']].map(([k,n])=>b('tst',k,n,ts===k)).join('')}</div><div class="fl"><label>Bullet style</label></div><div class="seg">${b('bst','dot','● Circle',st==='dot')}${b('bst','dash','- Dash',st==='dash')}</div><div class="fl"><label>Bullet color</label></div><div class="seg">${b('bcl','pink','Pink',cl==='pink')}${b('bcl','gray','Gray',cl==='gray')}</div>`};
 const tog=(k,l)=>`<label class="tog"><span>Show ${l} on CV</span><input type="checkbox" data-ea="tog" data-k="${k}" ${H(k)?'':'checked'}></label>`;
 const delb=(k,t='Delete')=>`<button class="rm" data-ea="del" data-k="${k}">${t}</button>`;
-function formHTML(){if(etab==='o')return orderHTML();if(etab==='g')return langsHTML();if(etab==='l')return linksHTML();
+function formHTML(){if(etab==='o')return orderHTML();if(etab==='g')return langsHTML();if(etab==='r')return refsHTML();if(etab==='l')return linksHTML();
  if(etab==='p')return photoField()+pdfTog()+field('name','Full name')+field('title','Headline')+field('email','Email',{opt:1,ph:'you@email.com'})+field('phone','Phone',{opt:1,ph:'+66 80 000 0000'})+field('city','Location',{opt:1,ph:'City, Country'})+field('site','Website or profile',{opt:1,ph:'yoursite.dev'})+field('summary','Summary',{opt:1,area:1,ph:'A short professional summary'})+sumUI();
  if(etab==='x')return tog('exp','Experience')+bulUI()+S.exp.map((e,i)=>`<div class="ic"><div class="ich"><b>Experience ${i+1}</b>${delb('exp.'+i)}</div>${field(`exp.${i}.role`,'Job title')}${field(`exp.${i}.company`,'Company')}<div class="two">${field(`exp.${i}.from`,'From',{ph:'YYYY'})}${field(`exp.${i}.to`,'To',{ph:'Now'})}</div>${field(`exp.${i}.city`,'Location')}<div class="fg"><div class="fl"><label>Highlights</label></div>${(e.bullets||[]).map((b,j)=>`<div class="br"><textarea data-f="exp.${i}.bullets.${j}" rows="2">${esc(b)}</textarea>${delb(`exp.${i}.bullets.${j}`,'×')}</div>`).join('')}<button class="addf" style="margin-top:4px" data-ea="add" data-k="exp.${i}.bullets">+ Add highlight</button></div></div>`).join('')+`<button class="addf" data-ea="add" data-k="exp">+ Add experience</button>`;
  if(etab==='e')return tog('edu','Education')+S.edu.map((e,i)=>`<div class="ic"><div class="ich"><b>Education ${i+1}</b>${delb('edu.'+i)}</div>${field(`edu.${i}.degree`,'Degree')}${field(`edu.${i}.school`,'School')}<div class="two">${field(`edu.${i}.year`,'Year',{ph:'YYYY'})}${field(`edu.${i}.note`,'Notes')}</div></div>`).join('')+`<button class="addf" data-ea="add" data-k="edu">+ Add education</button>`;
@@ -964,7 +1087,7 @@ mEd.addEventListener('click',e=>{
  else if(a==='mv'){const [kk,d]=k.split(':'),o=curOrd(),i=o.indexOf(kk),j=i+ +d;if(j<0||j>=o.length)return;[o[i],o[j]]=[o[j],o[i]];S.order=o}
  else return;
  save();render();renderForm()});
-const TT={exp:'Experience',edu:'Education',skills:'Skills',projects:'Projects',links:'Links',langs:'Languages'};
+const TT={exp:'Experience',edu:'Education',skills:'Skills',projects:'Projects',links:'Links',langs:'Languages',refs:'References'};
 const ord=def=>S.order?S.order.filter(k=>def.includes(k)).concat(def.filter(k=>!S.order.includes(k))):def;
 const ct=sep=>[['email','you@email.com'],['phone','+1 (555) 000-0000'],['city','City, Country'],['site','yoursite.com']].map(([k,p])=>E(k,p)).filter(Boolean).join(sep||'');
 const B={
@@ -972,7 +1095,7 @@ const B={
  edu:P=>S.edu.map((e,i)=>`<div class="it"><div class="r1"><b>${E(`edu.${i}.degree`,P.d)}</b><span class="dt">${E(`edu.${i}.year`,'YYYY')}</span></div><div class="r2">${E(`edu.${i}.school`,'University')}</div></div>`).join('')+A('edu','Add education'),
  skills:P=>S.skills.map((_,i)=>E('skills.'+i,P.s,'chip')).join('')+A('skills','Skill'),
  projects:P=>S.projects.map((p,i)=>`<div class="it"><div class="r1"><b>${E(`projects.${i}.name`,P.pn)}</b><span class="dt">${E(`projects.${i}.link`,'link')}</span></div><div class="r2">${E(`projects.${i}.desc`,P.pd)}</div></div>`).join('')+A('projects','Add project')};
-const sec=(k,P)=>H(k)?'':`<section class="sx s-${k}"><h4>${TL(k)}</h4><div class="sb">${B[k](P)}</div></section>`;
+const sec=(k,P)=>H(k)?'':`<section class="sx s-${k}"><h4>${TL(k)}</h4><div class="sb">${(lay===15&&B[k+'15']?B[k+'15']:B[k])(P)}</div></section>`;
 const secs=(d,P)=>ord(d).map(k=>sec(k,P)).join('');
 const su=(ph,t)=>H('summary')?'':`<section class="sx s-sum"><h4>${TLx('sum',t||'Profile')}</h4><div class="sb sm">${E('summary',ph)}</div></section>`;
 const nm=()=>`<h1>${E('name','Your name')}</h1>`,tl=()=>`<div class="tt">${E('title','Your title')}</div>`;
@@ -996,7 +1119,7 @@ mEd.addEventListener('pointerdown',e=>{const h=e.target.closest('.dh');if(!h)ret
 mEd.addEventListener('pointermove',e=>{if(!dg)return;const o=document.elementFromPoint(e.clientX,e.clientY),t=o&&o.closest('.oi');if(t&&t!==dg){const r=t.getBoundingClientRect();t.parentNode.insertBefore(dg,e.clientY<r.top+r.height/2?t:t.nextSibling)}});
 const endDrag=()=>{if(!dg)return;const k=dg.dataset.sec,old=curOrd().indexOf(k);dg=null;S.order=[...document.querySelectorAll('#ol .oi')].map(x=>x.dataset.sec);const nw=S.order.indexOf(k);save();render();renderForm();if(nw!==old){const n=document.querySelector('#ol .oi[data-sec="'+k+'"]');if(n)flash(n,nw<old?'↑ Moved up':'↓ Moved down')}};
 mEd.addEventListener('pointerup',endDrag);mEd.addEventListener('pointercancel',endDrag);
-const PCS=[['White','#ffffff'],['Warm white','#fffdf9'],['Cream','#fbf6ea'],['Light gray','#f3f3f1'],['Blush','#fdeff2'],['Sky','#eef4fb'],['Mint','#eef7f0'],['Lavender','#f3effb']];
+const PCS=[['White','#ffffff'],['Warm white','#fffdf9'],['Cream','#fbf6ea'],['Light gray','#f3f3f1'],['Blush','#fdeff2'],['Sky','#eef4fb'],['Mint','#eef7f0'],['Lavender','#f3effb'],['Soft cream','#fffcf5']];
 function applyPc(){if(!/^#[0-9a-f]{6}$/i.test(pc))pc='#ffffff';document.documentElement.style.setProperty('--pc',pc)}
 function renderPc(){$('#pcs').innerHTML=PCS.map(([n,c])=>`<i data-pc="${c}" title="${n}" class="${c===pc?'on':''}" style="background:${c}"></i>`).join('');$('#pcn').textContent=(PCS.find(x=>x[1]===pc)||['Custom'])[0];$('#pcc').value=pc}
 $('#pcs').onclick=e=>{const c=e.target.dataset.pc;if(c){pc=c;save();applyPc();renderPc()}};
@@ -1023,9 +1146,13 @@ const lvlDots=c=>{const i=LVL.findIndex(v=>v[0]===c);if(i<0)return'';const n=Mat
 const lvl=c=>lvlTxt(c)?lvlTxt(c)+lvlDots(c):(edit?'Level':'');
 B.langs=P=>S.langs.map((l,i)=>`<div class="it"><div class="r1"><b>${E(`langs.${i}.name`,'e.g. English')}</b><span class="dt">${lvl(l.level)}</span></div></div>`).join('')+A('langs','Add language');
 const langsHTML=()=>tog('langs','Languages')+`<div class="muted sm" style="margin:12px 0">Levels follow the CEFR standard: A1 to C2, plus Native.</div>`+S.langs.map((l,i)=>`<div class="ic"><div class="ich"><b>Language ${i+1}</b>${delb('langs.'+i)}</div>${field(`langs.${i}.name`,'Language',{ph:'English, Thai...'})}<div class="fg"><div class="fl"><label>Level</label></div><select data-lv="${i}"><option value="">Select level</option>${LVL.map(([c,n])=>`<option value="${c}" ${l.level===c?'selected':''}>${c==='Native'?'Native / Bilingual':c+' · '+n}</option>`).join('')}</select></div></div>`).join('')+`<button class="addf" data-ea="add" data-k="langs">+ Add language</button>`;
+B.edu15=P=>S.edu.map((e,i)=>`<div class="it ed15"><div class="sc">${E(`edu.${i}.school`,'University')}</div><div class="dg">${E(`edu.${i}.degree`,P.d)}</div><div class="yr">${E(`edu.${i}.year`,'YYYY')}</div><ul><li>${E(`edu.${i}.note`,'Honors or highlights (optional)')}</li></ul></div>`).join('')+A('edu','Add education');
+B.langs15=P=>S.langs.map((l,i)=>`<div class="it lg15"><span class="ln">${E(`langs.${i}.name`,'e.g. English')}</span><span class="lv">${l.level==='Native'?'Native Speaker':(lvlTxt(l.level)||(edit?'Level':''))}</span></div>`).join('')+A('langs','Add language');
+B.refs=P=>S.refs.map((r,i)=>`<div class="it rf"><div class="rn">${E(`refs.${i}.name`,'Reference name')}</div><div class="ri">${E(`refs.${i}.role`,'Job title')}</div><div class="rc">${E(`refs.${i}.company`,'Company')}</div><div class="ra">${E(`refs.${i}.addr`,'Address')}</div><div class="rm2">${E(`refs.${i}.email`,'email@example.com')}</div></div>`).join('')+A('refs','Add reference');
+const refsHTML=()=>tog('refs','References')+`<div class="muted sm" style="margin:12px 0">References appear in the Orchid Duo layout.</div>`+S.refs.map((r,i)=>`<div class="ic"><div class="ich"><b>Reference ${i+1}</b>${delb('refs.'+i)}</div>${field(`refs.${i}.name`,'Name',{ph:'Full name'})}${field(`refs.${i}.role`,'Job title',{ph:'Manager, Co-Worker'})}${field(`refs.${i}.company`,'Company',{ph:'Company'})}${field(`refs.${i}.addr`,'Address',{ph:'Address'})}${field(`refs.${i}.email`,'Email',{ph:'email@example.com'})}</div>`).join('')+`<button class="addf" data-ea="add" data-k="refs">+ Add reference</button>`;
 const linksHTML=()=>tog('links','Links')+S.links.map((l,i)=>`<div class="ic"><div class="ich"><b>Link ${i+1}</b>${delb('links.'+i)}</div>${field(`links.${i}.label`,'Label',{ph:'Portfolio, Behance, LinkedIn...'})}${field(`links.${i}.url`,'URL',{ph:'yoursite.com/portfolio'})}</div>`).join('')+`<button class="addf" data-ea="add" data-k="links">+ Add link</button>`;
 const pdfTog=()=>`<label class="tog"><span>Include photos in PDF</span><input type="checkbox" data-ea="tog" data-k="pdfphotos" ${H('pdfphotos')?'':'checked'}></label>`;
-const TL=k=>`<span class="ed" data-p="titles.${k}">${esc((S.titles&&S.titles[k])||TT[k])}</span>`;
+const TL=k=>`<span class="ed" data-p="titles.${k}">${esc((S.titles&&S.titles[k])||((lay===14||lay===15)&&{exp:'Work Experience'}[k])||TT[k])}</span>`;
 const TLx=(k,d)=>`<span class="ed" data-p="titles.${k}">${esc((S.titles&&S.titles[k])||d)}</span>`;
 $('#paper').addEventListener('click',e=>{
  if(e.target.closest('[data-img],.pf'))return;
@@ -1043,7 +1170,7 @@ async function exportDesigned(){
  if(typeof claude!=='undefined'){try{const d=await claude.use('downloads');if(d){prepPrint();
   const cs=getComputedStyle(document.documentElement),vars=['--a','--t','--pc','--f'].map(k=>k+':'+cs.getPropertyValue(k)).join(';');
   const css=document.querySelector('style').textContent;
-  const doc=`<!doctype html><html><head><meta charset="utf-8"><title>${esc(fn)}</title><link href="https://fonts.googleapis.com/css2?family=${FONTS[fi][2]}&display=swap" rel="stylesheet"><style>${css}:root{${vars}}@page{size:A4;margin:0}</style></head><body class="pdf-design"><div class="scroll"><div class="stage"><div class="${$('#paper').className.replace(/\bswap\b/,'').trim()}" data-l="${lay}" style="--bc:${$('#paper').style.getPropertyValue('--bc')}">${$('#paper').innerHTML}</div></div></div><script>setTimeout(()=>print(),700)<\/script></body></html>`;
+  const doc=`<!doctype html><html><head><meta charset="utf-8"><title>${esc(fn)}</title><link href="https://fonts.googleapis.com/css2?family=${FONTS[fi][2]}&display=swap" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;600&display=swap" rel="stylesheet"><style>${css}:root{${vars}}@page{size:A4;margin:0}</style></head><body class="pdf-design"><div class="scroll"><div class="stage"><div class="${$('#paper').className.replace(/\bswap\b/,'').trim()}" data-l="${lay}" style="--bc:${$('#paper').style.getPropertyValue('--bc')}">${$('#paper').innerHTML}</div></div></div><script>setTimeout(()=>print(),700)<\/script></body></html>`;
   render();await d.save({filename:fn+'.html',data:doc});return}}catch(e){}}
  prepPrint();document.body.classList.add('pdf-design');
  const st=document.createElement('style');st.textContent='@page{size:A4;margin:0}';document.head.appendChild(st);document.title=fn;
@@ -1063,7 +1190,14 @@ const bl=(l,t,w,h,c)=>`<b style="position:absolute;left:${l}%;top:${t}%;width:${
 const bk=(l,t,w,h,c)=>`<b style="position:absolute;left:${l}%;top:${t}%;width:${w}%;height:${h}%;border-radius:4px;background:${c}"></b>`;
 const LA='var(--a)',LT='var(--t)',LD='#2a3040';
 const rows=(l,w,ts)=>ts.map(t=>bl(l,t,w)+bl(l,t+6,w*.8)).join('');
+const X14=()=>{const P={r:'e.g. Content Writer',c:'Company, type of work, location',b:'Describe what you did and the result',d:'e.g. B.A. English',s:'e.g. Copywriting',pn:'Project name',pd:'Short description'};
+ return `<div class="lx l14"><div class="hd14"><div class="hl"><h1>${E('name','Your name')}</h1><div class="tt">${E('title','Your professional tagline')}</div><div class="ct col">${ct()}</div></div><div class="hr">${S.photo?pf('rect'):'<div class="pf rect empty"></div>'}</div></div>${su('Summary of your qualifications and experience','Summary of Qualifications')}<div class="cols14"><div class="c1">${secs(['edu','langs','skills'],P)}</div><div class="c2">${secs(['exp','projects','links'],P)}</div></div></div>`};
+const X15=()=>{const P={r:'e.g. Content Writer',c:'Company, type of work, location',b:'Describe what you did and the result',d:'e.g. B.A. English',s:'e.g. Copywriting',pn:'Project name',pd:'Short description'};
+ const lk=H('links')?'':`<div class="lk15">${S.links.map((l,i)=>`<div class="lk"><span class="ll">${E(`links.${i}.label`,'See my portfolio')}</span><span class="ch">\u203a</span><div class="lu">${E(`links.${i}.url`,'yoursite.com/portfolio')}</div></div>`).join('')}${A('links','Add link')}</div>`;
+ return `<div class="lx l15"><div class="hd15"><div class="hl"><h1>${E('name','Your name')}</h1><div class="tt">${E('title','Your professional tagline')}</div><div class="ct col">${ct()}</div></div><div class="hr">${S.photo?pf('rect'):'<div class="pf rect empty"></div>'}</div></div>${su('Summary of your qualifications and experience','Summary of Qualifications')}<div class="cols15"><div class="c1">${secs(['edu','langs','skills','refs'],P)}</div><div class="c2">${secs(['exp','projects'],P)}${lk}</div></div></div>`};
+
 const THUMBS={
+14:()=>bl(8,8,34,4,LA)+bl(8,15,42,2,LD)+bl(8,20,26,1.5,LD)+bk(72,6,20,22,LT)+bl(8,34,84,1,LA)+bl(8,38,84,3,'#c9cdd9')+bl(36,48,.6,46,'#e2d3de')+rows(8,24,[52,62,72])+rows(42,50,[52,62,72,82]),
 2:()=>bl(32,9,36,5,LD)+bl(0,26,100,1.5,LA)+[36,52,68,84].map(t=>bl(8,t,14,2,LA)+bl(30,t,60)+bl(30,t+6,48)).join(''),
 3:()=>bl(8,8,34,5,LD)+bl(66,9,26,3,LA)+bl(0,24,100,1.5,LA)+rows(8,38,[32,48,64,80])+rows(54,38,[32,48,64]),
 4:()=>bl(8,8,34,5,LD)+bl(8,17,22,3,LA)+bl(0,28,100,1)+[36,52,68,84].map(t=>bl(8,t,14,2,LA)+bl(32,t,58)+bl(32,t+6,44)).join(''),
@@ -1131,5 +1265,10 @@ $('#mLibOpen').onclick=()=>{$('#mMore').classList.remove('show');libHead();libRe
 
 $('#bZ2').onclick=()=>{$('#bZ').click();$('#zl2').textContent=$('#zl').textContent};
 render();
+const _pgm=()=>{const p=$('#paper');if(!p)return;_po.disconnect();p.querySelectorAll('.pgbrk').forEach(x=>x.remove());const H=p.offsetHeight,PH=1123;for(let n=1;n*PH<H-30;n++){const d=document.createElement('div');d.className='pgbrk';d.style.top=(n*PH)+'px';d.innerHTML='<span>Page '+(n+1)+'</span>';p.appendChild(d)}_po.observe(p,{childList:true,subtree:true,characterData:true})};
+let _pr2;const _po=new MutationObserver(()=>{cancelAnimationFrame(_pr2);_pr2=requestAnimationFrame(_pgm)});
+_po.observe($('#paper'),{childList:true,subtree:true,characterData:true});
+setTimeout(_pgm,400);setTimeout(_pgm,1200);
+let _fp=false,_zi=0;const _zs=[1,1.5,2,.75];const setFocus=on=>{const b=document.body;if(on&&!b.classList.contains('focus')){_fp=edit;edit=false;b.classList.add('focus')}else if(!on&&b.classList.contains('focus')){b.classList.remove('focus');edit=_fp}render();setTimeout(fit,60)};$('#bFocus').onclick=()=>{setFocus(false);fit()};$('#bHide').onclick=()=>setFocus(true);
 setTimeout(fit,300);setTimeout(()=>document.body.classList.add('ready'),700);
 </script></body></html>
