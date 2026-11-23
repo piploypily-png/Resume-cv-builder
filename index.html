@@ -302,9 +302,10 @@ html body[data-tone] .dock .nav button{background:#f7f4ef;box-shadow:none}
  body.pdf-design .dock,body.pdf-design .modal,body.pdf-design #ats,body.pdf-design input{display:none!important}
  body.pdf-design .scroll{overflow:visible;padding:0;margin:0}
  body.pdf-design .stage{width:auto!important;height:auto!important;margin:0!important;position:static}
- body.pdf-design .paper{position:static!important;transform:none!important;width:100%!important;min-height:1122px!important;box-shadow:none!important;border:0!important;border-radius:0!important;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+ body.pdf-design .paper{position:static!important;transform:none!important;width:100%!important;min-height:1122px!important;box-shadow:none!important;border:1px solid transparent!important;border-radius:0!important;-webkit-box-decoration-break:clone;box-decoration-break:clone}
  body.pdf-design .ed:empty{display:none!important}
- body.pdf-design .ed{background:none!important;box-shadow:none!important;outline:0!important}
+ body.pdf-design .ed:not(.chip){background:none!important;box-shadow:none!important;outline:0!important}
+body.pdf-design .ed.chip{box-shadow:none!important;outline:0!important}
  body.pdf-design .ph:not(.has){display:none!important}
  body.pdf-design .pill:has(.ed:empty){display:none!important}
  body.pdf-design .it:not(:has(.ed:not(:empty))),body.pdf-design .edrow:not(:has(.ed:not(:empty))),body.pdf-design .sx:not(:has(.ed:not([data-p^="titles."]):not(:empty))){display:none!important}
@@ -712,6 +713,15 @@ body:not(.edit) .l15 .lu{display:none}
 .l16 h4::before{content:'';display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--a);margin-right:7px;vertical-align:middle}
 .l16 .dt{background:var(--t);color:var(--a);padding:2px 9px;border-radius:999px;font-weight:600;font-size:10px}
 .l16 .chip{border-radius:999px}
+/* clean view = PDF: empty photo slots and empty link pills are hidden when not editing */
+body:not(.edit) .ph:not(.has),body:not(.edit) .pill:has(.ed:empty){display:none!important}
+/* reorder work experiences */
+.mvb{display:flex;gap:6px;margin-left:auto;margin-right:8px}
+.mvb button{width:34px;height:34px;border-radius:10px;border:1px solid #e6e8ef;background:#fff;color:#5b6275;font-size:12px;cursor:pointer}
+.mvb button:disabled{opacity:.3;cursor:default}
+.ic{position:relative}
+.ic.moved{animation:oiPulse .8s ease}
+.ic .mk{position:absolute;right:92px;top:14px;background:#f48fb1;color:#fff;border-radius:999px;padding:3px 10px;font-size:12px;font-weight:700;animation:mkfade 1.1s ease forwards;pointer-events:none;white-space:nowrap}
 </style></head><body class="edit">
 <div class="scroll"><div class="stage" id="stage"><div class="paper" id="paper"></div></div></div>
 
@@ -1075,7 +1085,7 @@ const tog=(k,l)=>`<label class="tog"><span>Show ${l} on CV</span><input type="ch
 const delb=(k,t='Delete')=>`<button class="rm" data-ea="del" data-k="${k}">${t}</button>`;
 function formHTML(){if(etab==='o')return orderHTML();if(etab==='g')return langsHTML();if(etab==='r')return refsHTML();if(etab==='l')return linksHTML();
  if(etab==='p')return photoField()+pdfTog()+field('name','Full name')+field('title','Headline')+field('email','Email',{opt:1,ph:'you@email.com'})+field('phone','Phone',{opt:1,ph:'+66 80 000 0000'})+field('city','Location',{opt:1,ph:'City, Country'})+field('site','Website or profile',{opt:1,ph:'yoursite.dev'})+field('summary','Summary',{opt:1,area:1,ph:'A short professional summary'})+sumUI();
- if(etab==='x')return tog('exp','Experience')+bulUI()+S.exp.map((e,i)=>`<div class="ic"><div class="ich"><b>Experience ${i+1}</b>${delb('exp.'+i)}</div>${field(`exp.${i}.role`,'Job title')}${field(`exp.${i}.company`,'Company')}<div class="two">${field(`exp.${i}.from`,'From',{ph:'YYYY'})}${field(`exp.${i}.to`,'To',{ph:'Now'})}</div>${field(`exp.${i}.city`,'Location')}<div class="fg"><div class="fl"><label>Highlights</label></div>${(e.bullets||[]).map((b,j)=>`<div class="br"><textarea data-f="exp.${i}.bullets.${j}" rows="2">${esc(b)}</textarea>${delb(`exp.${i}.bullets.${j}`,'×')}</div>`).join('')}<button class="addf" style="margin-top:4px" data-ea="add" data-k="exp.${i}.bullets">+ Add highlight</button></div></div>`).join('')+`<button class="addf" data-ea="add" data-k="exp">+ Add experience</button>`;
+ if(etab==='x')return tog('exp','Experience')+bulUI()+S.exp.map((e,i)=>`<div class="ic"><div class="ich"><b>Experience ${i+1}</b><span class="mvb"><button type="button" data-ea="xmv" data-k="${i}:-1" aria-label="Move up" ${i===0?'disabled':''}>▲</button><button type="button" data-ea="xmv" data-k="${i}:1" aria-label="Move down" ${i===S.exp.length-1?'disabled':''}>▼</button></span>${delb('exp.'+i)}</div>${field(`exp.${i}.role`,'Job title')}${field(`exp.${i}.company`,'Company')}<div class="two">${field(`exp.${i}.from`,'From',{ph:'YYYY'})}${field(`exp.${i}.to`,'To',{ph:'Now'})}</div>${field(`exp.${i}.city`,'Location')}<div class="fg"><div class="fl"><label>Highlights</label></div>${(e.bullets||[]).map((b,j)=>`<div class="br"><textarea data-f="exp.${i}.bullets.${j}" rows="2">${esc(b)}</textarea>${delb(`exp.${i}.bullets.${j}`,'×')}</div>`).join('')}<button class="addf" style="margin-top:4px" data-ea="add" data-k="exp.${i}.bullets">+ Add highlight</button></div></div>`).join('')+`<button class="addf" data-ea="add" data-k="exp">+ Add experience</button>`;
  if(etab==='e')return tog('edu','Education')+S.edu.map((e,i)=>`<div class="ic"><div class="ich"><b>Education ${i+1}</b>${delb('edu.'+i)}</div>${field(`edu.${i}.degree`,'Degree')}${field(`edu.${i}.school`,'School')}<div class="two">${field(`edu.${i}.year`,'Year',{ph:'YYYY'})}${field(`edu.${i}.note`,'Notes')}</div></div>`).join('')+`<button class="addf" data-ea="add" data-k="edu">+ Add education</button>`;
  if(etab==='s')return tog('skills','Skills')+`<div style="margin-top:16px">${S.skills.map((s,i)=>s?`<span class="sk">${esc(s)}<button data-ea="del" data-k="skills.${i}">×</button></span>`:'').join('')}</div><div class="addrow"><input id="skIn" placeholder="Add skills, separated by commas"><button class="btn" data-ea="skadd">Add</button></div>`;
  return tog('projects','Projects')+S.projects.map((p,i)=>`<div class="ic"><div class="ich"><b>Project ${i+1}</b>${delb('projects.'+i)}</div>${field(`projects.${i}.name`,'Project name')}${field(`projects.${i}.link`,'Link',{ph:'yoursite.dev/project'})}${field(`projects.${i}.desc`,'Description',{area:1,rows:3})}<div class="fg"><div class="fl"><label>Photo</label>${p.img?`<button class="rm" data-ea="photo-rm" data-k="${i}">Remove</button>`:''}</div><div class="pimg" data-ea="photo" data-k="${i}" style="${p.img?`background-image:url(${p.img})`:''}">${p.img?'':'+ Upload photo'}</div></div></div>`).join('')+`<button class="addf" data-ea="add" data-k="projects">+ Add project</button>`}
@@ -1096,6 +1106,11 @@ mEd.addEventListener('click',e=>{const b=e.target.closest('[data-ea="bst"],[data
 mEd.addEventListener('change',e=>{const t=e.target;if(t.dataset&&t.dataset.ea==='thl'){S.thl=t.checked;save();render();return}if(t.dataset&&t.dataset.lv!==undefined){S.langs[+t.dataset.lv].level=t.value;save();render();return}if(t.dataset&&t.dataset.ea==='tog'){S.hide[t.dataset.k]=!t.checked;save();render()}});
 mEd.addEventListener('keydown',e=>{if(e.key==='Enter'&&e.target.id==='skIn'){e.preventDefault();const b=mEd.querySelector('[data-ea=skadd]');if(b)b.click()}});
 const flash=(n,t)=>{n.classList.remove('moved');void n.offsetWidth;n.classList.add('moved');const m=document.createElement('span');m.className='mk';m.textContent=t;n.appendChild(m);setTimeout(()=>m.remove(),1100)};
+mEd.addEventListener('click',e=>{const b=e.target.closest('[data-ea="xmv"]');if(!b||b.disabled)return;e.stopImmediatePropagation();const [i,d]=b.dataset.k.split(':').map(Number),j=i+d;if(j<0||j>=S.exp.length)return;
+ const q=()=>[...document.querySelectorAll('#edb .ic')],eb=$('#edb'),sc=eb.scrollTop,c0=q(),t0=[c0[i].getBoundingClientRect().top,c0[j].getBoundingClientRect().top];
+ const t=S.exp[i];S.exp[i]=S.exp[j];S.exp[j]=t;save();render();renderForm();eb.scrollTop=sc;
+ const c1=q();[[c1[j],t0[0]],[c1[i],t0[1]]].forEach(([el,from])=>{if(!el)return;const dy=from-el.getBoundingClientRect().top;if(!dy)return;el.style.transition='none';el.style.transform='translateY('+dy+'px)';requestAnimationFrame(()=>requestAnimationFrame(()=>{el.style.transition='transform .32s ease-out';el.style.transform='';setTimeout(()=>{el.style.transition=''},360)}))});
+ if(c1[j]){c1[j].classList.add('moved');setTimeout(()=>c1[j]&&c1[j].classList.remove('moved'),850)}});
 mEd.addEventListener('click',e=>{const b=e.target.closest('[data-ea="mv"]');if(!b)return;const ol=$('#ol');if(!ol)return;e.stopImmediatePropagation();
  const [k,d]=b.dataset.k.split(':'),items=[...ol.querySelectorAll('.oi')],i=items.findIndex(x=>x.dataset.sec===k),j=i+ +d;if(i<0||j<0||j>=items.length)return;
  const top=new Map(items.map(x=>[x,x.getBoundingClientRect().top])),me=items[i],ot=items[j];
